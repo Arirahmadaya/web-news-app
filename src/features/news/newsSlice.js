@@ -10,7 +10,7 @@ export const fetchNews = createAsyncThunk(
       method: 'GET',
       url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json',
       params: {
-        'api-key': import.meta.env.VITE_APP_NYT_API_KEY, // Menggunakan variabel dari .env
+        'api-key': import.meta.env.VITE_APP_NYT_API_KEY, 
         q: query,
       },
     });

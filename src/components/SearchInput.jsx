@@ -1,45 +1,50 @@
-// src/components/SearchInput.jsx
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchNews } from '../features/news/newsSlice'; 
-import { SearchIcon } from './SearchIcon.jsx';
-import { Navbar, NavbarContent, Button, Input } from '@nextui-org/react';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchNews } from "../features/news/newsSlice";
+import { Navbar, NavbarContent, Input } from "@nextui-org/react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function SearchInput() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search.trim()) {
-      dispatch(fetchNews(search)); // Gunakan dispatch untuk memanggil fetchNews
-      setSearch('');
+      dispatch(fetchNews(search)); // Panggil fetchNews dengan query pencarian
+      setSearch("");
+    }
+  };
+
+  const handleIconClick = () => {
+    if (search.trim()) {
+      dispatch(fetchNews(search)); // Trigger fetchNews ketika ikon diklik
+      setSearch("");
     }
   };
 
   return (
-    <Navbar>
-      <NavbarContent as="div" className="items-center sm:px-2 px-8" justify="end">
-        <form onSubmit={handleSubmit} className="flex items-center">
-          <Input
-            classNames={{
-              base: 'w-full h-10',
-              mainWrapper: 'h-full',
-              input: 'text-small',
-              inputWrapper: 'h-full font-bold text-blue-800 bg-white-400/20 border rounded-xl',
-            }}
-            placeholder="Cari Berita..."
-            size="sm"
-            startContent={<SearchIcon size={20} />}
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+    <form onSubmit={handleSubmit} className="flex items-center">
+      <Input
+        classNames={{
+          base: "w-full h-10",
+          mainWrapper: "h-full",
+          input: "text-small",
+          inputWrapper:
+            "h-full font-bold text-blue-800 bg-white-400/20 border rounded-xl",
+        }}
+        placeholder="Search News..."
+        size="sm"
+        type="search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        startContent={
+          <MagnifyingGlassIcon
+            className="w-7 h-6 text-gray-500 cursor-pointer"
+            onClick={handleIconClick} // Event klik pada ikon
           />
-          <Button type="submit" className="ml-2" auto>
-            Search
-          </Button>
-        </form>
-      </NavbarContent>
-    </Navbar>
+        }
+      />
+    </form>
   );
 }

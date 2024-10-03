@@ -11,9 +11,9 @@ import {
   NavbarMenuItem,
   Card,
 } from "@nextui-org/react";
-import { AcmeLogo } from "./AcmeLogo.jsx";
-
+import { NewspaperIcon } from "@heroicons/react/24/outline";
 import SearchInput from "./SearchInput.jsx";
+import Filter from "./Filter.jsx";
 
 export default function Nav({ fetchNews }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -27,66 +27,86 @@ export default function Nav({ fetchNews }) {
   ];
 
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent justify="start">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
-        <NavbarBrand className="mr-4">
-          <AcmeLogo />
-          <p className="hidden sm:block font-bold text-inherit">News App</p>
-        </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-3 ">
-          {/* Menu Utama */}
-          {menuItems.map((item) => {
+    <>
+      <Navbar isBordered shouldHideOnScroll className="w-full">
+        
+        <NavbarContent>
+          <NavbarContent></NavbarContent>
+          <NavbarContent>
+            <NavbarBrand className="flex justify-center">
+              <NewspaperIcon className="w-10 h-10" />
+              <p className="font-bold text-inherit mx-2">News App</p>
+            </NavbarBrand>
+          </NavbarContent>
+
+          <NavbarContent justify="center">
+            <SearchInput fetchNews={fetchNews} />
+
+            <Filter />
+          </NavbarContent>
+        </NavbarContent>
+      </Navbar>
+      <Navbar
+        isBordered
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={setIsMenuOpen}
+       
+        
+      >
+      
+        <NavbarContent className="flex ">
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
+          />
+
+          <NavbarContent justify="center" className="hidden sm:flex gap-3  w-full ">
+            {/* Menu Utama */}
+            {menuItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              const menuActiveClass = isActive
+                ? "text-blue-900 font-semibold border-b-2 border-blue-900 h-full"
+                : "text-gray-700";
+              return (
+                <NavbarItem
+                  className=" flex h-full items-center justify-center text-center"
+                  key={item.name}
+                  isActive={isActive}
+                >
+                  <Link
+                    to={item.path}
+                    className={`flex items-center px-3  ${menuActiveClass}`}
+                  >
+                    {item.name}
+                  </Link>
+                </NavbarItem>
+              );
+            })}
+          </NavbarContent>
+        </NavbarContent>
+
+        <NavbarMenu>
+          {menuItems.map((item, index) => {
             const isActive = location.pathname === item.path;
             const menuActiveClass = isActive
-              ? "text-blue-900 font-semibold border-b-2 border-blue-900 h-full"
+              ? "border-l-3  border-[#1f308b]"
               : "text-gray-700";
             return (
-              <NavbarItem
-                className=" flex h-full items-center"
-                key={item.name}
-                isActive={isActive}
-              >
-                <Link
-                  to={item.path}
-                  className={`flex items-center px-3  ${menuActiveClass}`}
-                >
-                  {item.name}
-                </Link>
-              </NavbarItem>
+              <NavbarMenuItem key={`${item.name}-${index}`} isActive={isActive}>
+                <Card className="w-full shadow-sm rounded-lg">
+                  <Link
+                    className={`flex items-center justify-center  px-3 py-2  ${menuActiveClass}`}
+                    to={item.path}
+                    size="lg"
+                  >
+                    {item.name}
+                  </Link>
+                </Card>
+              </NavbarMenuItem>
             );
           })}
-        </NavbarContent>
-      </NavbarContent>
-
-      <SearchInput fetchNews={fetchNews} />
-
-      <NavbarMenu>
-        {" "}
-        {/* SideBar */}
-        {menuItems.map((item, index) => {
-          const isActive = location.pathname === item.path;
-          const menuActiveClass = isActive
-            ? "border-l-3  border-[#1f308b]"
-            : "text-gray-700";
-          return (
-            <NavbarMenuItem key={`${item.name}-${index}`} isActive={isActive}>
-              <Card className="w-full shadow-sm rounded-lg">
-                <Link
-                  className={`flex items-center justify-center  px-3 py-2  ${menuActiveClass}`}
-                  to={item.path}
-                  size="lg"
-                >
-                  {item.name}
-                </Link>
-              </Card>
-            </NavbarMenuItem>
-          );
-        })}
-      </NavbarMenu>
-    </Navbar>
+        </NavbarMenu>
+      </Navbar>
+    </>
   );
 }
