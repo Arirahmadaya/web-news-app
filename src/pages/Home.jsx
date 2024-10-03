@@ -19,7 +19,7 @@ function Home() {
     <div className="min-h-screen">
       <div className="container mx-auto pb-16">
         <div className="max-w-4xl mx-auto pt-5 rounded-lg">
-          <h1 className="text-3xl font-bold text-center">New York Times</h1>
+          <h1 className="text-3xl font-bold text-center">Trending News</h1>
         </div>
         <div className="flex mx-16 my-5 gap-2">
           <div className="w-full">

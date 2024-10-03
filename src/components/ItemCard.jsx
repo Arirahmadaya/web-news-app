@@ -19,7 +19,7 @@ export default function ItemCard({ news }) {
   };
 
   return (
-    <div className="flex justify-center lg:mb-5 mb-2">
+    <div className="flex justify-center lg:mb-5 mb-2 ">
       <div className="max-w-sm w-full flex flex-col rounded-lg overflow-hidden shadow-sm border transition-transform transform hover:scale-105 bg-white">
         <Link to={`/news/${encodeURIComponent(news._id)}`}>
           <img
@@ -38,10 +38,11 @@ export default function ItemCard({ news }) {
             <p className="text-gray-600 text-base mt-2">
               {truncateText(news.snippet, 17)}
             </p>
-            <div className="mt-auto justify-between items-center flex text-gray-500 ">
-              <p className="text-sm mt-2">{formatDate(news.pub_date)}</p>
+            <div className="my-auto justify-between items-center flex text-gray-500 border-2">
+              
+              <p className="text-sm ">{formatDate(news.pub_date)}</p>
 
-              <BookmarkIcon className="w-5 h-auto" />
+              <BookmarkIcon className="w-5 h-auto mr-2" />
             </div>
           </div>
         </Link>
