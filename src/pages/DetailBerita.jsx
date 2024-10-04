@@ -79,47 +79,17 @@ export default function DetailBerita() {
             {article.lead_paragraph}
             {article.lead_paragraph}
             {article.lead_paragraph}
-            
           </p>
           <p className="font-nunito font-semibold">
             {new Date(article.pub_date).toLocaleDateString("id-ID")}
           </p>
 
-          {/* Share Section */}
-          <div className="space-x-4 mb-8 mt-4">
-            <div className="flex justify-center xl:justify-start space-x-4">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                className="flex h-6 w-8 items-center justify-center rounded-full border transition duration-300"
-              >
-                <AcademicCapIcon className="text-black w-8 h-8" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                className="flex h-6 w-8 items-center justify-center rounded-full border transition duration-300"
-              >
-                <AcademicCapIcon className="text-black w-8 h-8" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                className="flex h-6 w-8 items-center justify-center rounded-full border transition duration-300"
-              >
-                <AcademicCapIcon className="text-black w-8 h-8" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                className="flex h-6 w-8 items-center justify-center rounded-full border transition duration-300"
-              >
-                <AcademicCapIcon className="text-black w-8 h-8" />
-              </a>
-            </div>
-          </div>
+         
+          <div>
+            <h1>Other Articles</h1>
 
-          <Others />
+            <Others />
+          </div>
         </div>
         <div className="w-auto my-10 fixed right-28">
           <Share />
