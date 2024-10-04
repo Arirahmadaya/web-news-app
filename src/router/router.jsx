@@ -9,6 +9,7 @@ import Saved from "../pages/Saved";
 import DetailBerita from "../pages/DetailBerita";
 import ErrorPage from "../pages/ErrorPage";
 import MainLayout from "../layouts/MainLayout";
+import Covid from "../pages/Covid";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +21,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-  
       {
+        path: "covid",
+        element: <Covid />,
+      },
+    {
         path: "indonesia",
         element: <Indonesia />,
       },

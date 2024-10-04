@@ -32,10 +32,10 @@ export default function ItemCard({ news }) {
             alt={news.headline.main}
           />
           <div className="p-3 flex flex-col flex-grow mb-2">
-            <h5 className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors">
+            <h5 className="text-lg font-semibold font-nunito text-gray-800 hover:text-blue-600 transition-colors">
               {truncateText(news.headline.main, 8)}
             </h5>
-            <p className="text-gray-600 text-base mt-2">
+            <p className="text-gray-600 font-fira text-base mt-2">
               {truncateText(news.snippet, 17)}
             </p>
             <div className="my-auto justify-between items-center flex text-gray-500 border-2">

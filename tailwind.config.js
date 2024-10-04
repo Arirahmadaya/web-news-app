@@ -8,7 +8,14 @@ export default {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        fira: ['"Fira Sans"', "sans-serif"],
+      },
+    },
+    fontFamily: {
+      nunito: ['"Nunito"', "sans-serif"],
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

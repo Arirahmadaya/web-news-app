@@ -1,8 +1,7 @@
-// src/features/news/newsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// createAsyncThunk untuk fetch API secara asinkron
+// Thunk untuk fetch API berdasarkan query
 export const fetchNews = createAsyncThunk(
   'news/fetchNews',
   async (query = 'Indonesia') => {
@@ -10,7 +9,7 @@ export const fetchNews = createAsyncThunk(
       method: 'GET',
       url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json',
       params: {
-        'api-key': import.meta.env.VITE_APP_NYT_API_KEY, 
+        'api-key': import.meta.env.VITE_APP_NYT_API_KEY,
         q: query,
       },
     });
@@ -18,15 +17,31 @@ export const fetchNews = createAsyncThunk(
   }
 );
 
-// Buat slice untuk news
+// Thunk untuk fetch API berdasarkan ID
+export const fetchNewsById = createAsyncThunk(
+  'news/fetchNewsById',
+  async (id) => {
+    const response = await axios({
+      method: 'GET',
+      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
+      params: {
+        'api-key': import.meta.env.VITE_APP_NYT_API_KEY,
+        fq: `_id:"${id}"`,
+      },
+    });
+    return response.data.response.docs[0]; // Ambil berita berdasarkan ID
+  }
+);
+
 const newsSlice = createSlice({
   name: 'news',
   initialState: {
     articles: [],
+    selectedArticle: null, // Simpan detail berita
     loading: false,
     error: null,
   },
-  reducers: {}, // Tempat untuk action manual jika diperlukan
+  reducers: {}, 
   extraReducers: (builder) => {
     builder
       .addCase(fetchNews.pending, (state) => {
@@ -39,8 +54,22 @@ const newsSlice = createSlice({
       .addCase(fetchNews.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      // Tambahkan kasus untuk fetchNewsById
+      .addCase(fetchNewsById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchNewsById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.selectedArticle = action.payload;
+      })
+      .addCase(fetchNewsById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
 
+
 export default newsSlice.reducer;
+export const newsActions = { fetchNews, fetchNewsById };
