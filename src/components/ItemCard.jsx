@@ -1,10 +1,28 @@
-// src/components/ItemCard.jsx
 import { BookmarkIcon } from "@heroicons/react/24/outline";
 import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
-
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addSavedArticle, removeSavedArticle } from "../features/saved/savedSlice"; // Import actions
 
 export default function ItemCard({ news }) {
+  const dispatch = useDispatch();
+  const savedArticles = useSelector((state) => state.saved); // Get saved articles
+
+  const isSaved = savedArticles.some((article) => article._id === news._id); // Check if news is already saved
+
+  const handleBookmarkClick = () => {
+    if (isSaved) {
+      dispatch(removeSavedArticle(news._id)); // Hapus artikel dari saved
+    } else {
+      dispatch(addSavedArticle(news)); // Tambahkan artikel ke saved
+      // Sudah ditangani di reducer
+    }
+  };
+
+  
+  
+  
+
   const truncateText = (text, maxWords) => {
     const words = text.split(" ");
     return words.length > maxWords
@@ -31,21 +49,27 @@ export default function ItemCard({ news }) {
             className="w-full h-40 object-cover"
             alt={news.headline.main}
           />
-          <div className="p-3 flex flex-col flex-grow mb-2">
+        </Link>
+        <div className="p-3 flex flex-col flex-grow mb-2">
+          <Link to={`/news/${encodeURIComponent(news._id)}`}>
             <h5 className="text-lg font-semibold font-nunito text-gray-800 hover:text-blue-600 transition-colors">
               {truncateText(news.headline.main, 8)}
             </h5>
-            <p className="text-gray-600 font-fira text-base mt-2">
-              {truncateText(news.snippet, 17)}
-            </p>
-            <div className="my-auto justify-between items-center flex text-gray-500 border-2">
-              
-              <p className="text-sm ">{formatDate(news.pub_date)}</p>
-
-              <BookmarkIcon className="w-5 h-auto mr-2" />
-            </div>
+          </Link>
+          <p className="text-gray-600 font-fira text-base mt-2">
+            {truncateText(news.snippet, 17)}
+          </p>
+          <div className="my-auto justify-between items-center flex text-gray-500 border-2">
+            <p className="text-sm">{formatDate(news.pub_date)}</p>
+            <button onClick={handleBookmarkClick}>
+              {isSaved ? (
+                <BookmarkIconSolid className="w-5 h-auto mr-2 text-emerald-600" />
+              ) : (
+                <BookmarkIcon className="w-5 h-auto mr-2" />
+              )}
+            </button>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   );

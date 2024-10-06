@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { fetchNewsById } from "../features/news/newsSlice"; // Pastikan impor fetchNewsById
 import Others from "../components/Other";
 import Share from "../components/Share";
@@ -80,15 +79,14 @@ export default function DetailBerita() {
             {article.lead_paragraph}
             {article.lead_paragraph}
           </p>
-          <p className="font-nunito font-semibold">
+          <p className="font-nunito font-semibold text-lg">
             {new Date(article.pub_date).toLocaleDateString("id-ID")}
           </p>
 
          
           <div>
-            <h1>Other Articles</h1>
+            <h1 className="text-3xl font-bold text-center mb-10">Other Articles</h1>
 
-            <Others />
           </div>
         </div>
         <div className="w-auto my-10 fixed right-28">

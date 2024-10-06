@@ -1,21 +1,22 @@
 // src/features/saved/savedSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const savedSlice = createSlice({
-  name: 'saved',
-  initialState: [],
+  name: "saved",
+  initialState: JSON.parse(localStorage.getItem("savedArticles")) || [],
   reducers: {
     addSavedArticle: (state, action) => {
-      state.push(action.payload);
+      const newState = [...state, action.payload];
+      localStorage.setItem("savedArticles", JSON.stringify(newState));
+      return newState;
     },
     removeSavedArticle: (state, action) => {
-      return state.filter(article => article._id !== action.payload);
-    },
-    loadSavedArticles: (state, action) => {
-      return action.payload;
+      const newState = state.filter((article) => article._id !== action.payload);
+      localStorage.setItem("savedArticles", JSON.stringify(newState));
+      return newState;
     },
   },
 });
 
-export const { addSavedArticle, removeSavedArticle, loadSavedArticles } = savedSlice.actions;
+export const { addSavedArticle, removeSavedArticle } = savedSlice.actions;
 export default savedSlice.reducer;

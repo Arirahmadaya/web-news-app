@@ -1,3 +1,4 @@
+// src/features/news/newsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -33,11 +34,27 @@ export const fetchNewsById = createAsyncThunk(
   }
 );
 
+// Thunk untuk fetch trending articles
+export const fetchTrendingNews = createAsyncThunk(
+  'news/fetchTrendingNews',
+  async () => {
+    const response = await axios({
+      method: 'GET',
+      url: 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json',
+      params: {
+        'api-key': import.meta.env.VITE_APP_NYT_API_KEY,
+      },
+    });
+    return response.data.results; // Kembalikan hasil
+  }
+);
+
 const newsSlice = createSlice({
   name: 'news',
   initialState: {
     articles: [],
     selectedArticle: null, // Simpan detail berita
+    trendingArticles: [], // State untuk trending articles
     loading: false,
     error: null,
   },
@@ -66,10 +83,21 @@ const newsSlice = createSlice({
       .addCase(fetchNewsById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      // Tambahkan kasus untuk fetchTrendingNews
+      .addCase(fetchTrendingNews.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchTrendingNews.fulfilled, (state, action) => {
+        state.loading = false;
+        state.trendingArticles = action.payload; // Simpan trending articles
+      })
+      .addCase(fetchTrendingNews.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-
 export default newsSlice.reducer;
-export const newsActions = { fetchNews, fetchNewsById };
+export const newsActions = { fetchNews, fetchNewsById, fetchTrendingNews };

@@ -1,3 +1,4 @@
+// src/components/Footer.jsx
 import React, { useEffect, useState } from "react";
 import { ChevronDoubleUpIcon } from "@heroicons/react/24/outline";
 
@@ -31,7 +32,7 @@ export default function Footer() {
   return (
     <>
     <hr className="border-black"/>
-    <footer className="bg-zinc-100 text-white py-4 relative">
+    <footer className="bg-zinc-100  py-4 relative">
       
       <div className="text-center text-black">
         <p>&copy; Ari Rahmadaya. All rights reserved.</p>
@@ -48,7 +49,7 @@ export default function Footer() {
         </div>
       )}
 
-      <style jsx>{`
+      <style >{`
         @keyframes bounce {
           0%, 20%, 50%, 80%, 100% {
             transform: translateY(0);

@@ -11,7 +11,7 @@ export default function SearchInput() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search.trim()) {
-      dispatch(fetchNews(search)); // Panggil fetchNews dengan query pencarian
+      dispatch(fetchNews(search)); 
       setSearch("");
     }
   };
