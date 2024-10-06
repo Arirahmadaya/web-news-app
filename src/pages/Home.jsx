@@ -4,9 +4,9 @@ import TrendingNews from "../components/TrendingNews";
 
 function Home() {
   return (
-    <div className="min-h-screen">
+    <>
       <TrendingNews />
-    </div>
+    </>
   );
 }
 

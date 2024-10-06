@@ -4,8 +4,9 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import { fetchNewsById } from "../features/news/newsSlice"; // Pastikan impor fetchNewsById
-import Others from "../components/Other";
+import Others from "../components/OthersArticles";
 import Share from "../components/Share";
+import { BookmarkIcon } from "@heroicons/react/24/outline";
 
 export default function DetailBerita() {
   const { id } = useParams();
@@ -37,7 +38,7 @@ export default function DetailBerita() {
 
   return (
     <>
-      <div className="min-h-screen mx-16 p-4 flex gap-5">
+      <div className=" p-4 flex gap-5">
         <div className="w-4/5">
           {/* Breadcrumbs */}
           <Breadcrumbs className="my-5">
@@ -83,13 +84,28 @@ export default function DetailBerita() {
             {new Date(article.pub_date).toLocaleDateString("id-ID")}
           </p>
 
-         
+          <div className="flex justify-between items-center">
+            <p className="font-semibold">
+              Source:{" "}
+              <a
+                className="text-blue-500"
+                href={article.web_url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {article.source}
+              </a>{" "}
+            </p>
+            {/* Icon Bookmark */}
+            <button className="mr-2">
+              <BookmarkIcon />
+            </button>
+          </div>
           <div>
-            <h1 className="text-3xl font-bold text-center mb-10">Other Articles</h1>
-
+            {/* <h1 className="text-3xl font-bold text-center mb-10">Other Articles</h1> */}
           </div>
         </div>
-        <div className="w-auto my-10 fixed right-28">
+        <div className="w-auto my-10 fixed lg:right-28 right-5">
           <Share />
         </div>
       </div>

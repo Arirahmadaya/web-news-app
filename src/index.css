@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --border: 226 35% 15%;
+  }
+}
+
+@layer utilities {
+  .border-shadow {
+    @apply border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  .neu {
+    @apply mb-[3px] mr-[3px] border-2 border-foreground shadow;
+  }
+
+  .neu-pressed {
+    @apply translate-x-[2.5px] translate-y-[2.5px] shadow-active;
+  }
+  .neu-active:active {
+    @apply active:neu-pressed;
+  }
+  .neu-focus:focus {
+    @apply focus-visible:neu-pressed;
+  }
+}

@@ -1,4 +1,3 @@
-// src/components/NewsCover.js
 import React from "react";
 
 export default function NewsCover({
@@ -10,31 +9,43 @@ export default function NewsCover({
   publishedDate,
   byline,
   source,
+  handleBookmarkClick,
+  bookmarkIcon, // Tambahkan prop bookmarkIcon
 }) {
   return (
     <>
-      <img
-        src={imageUrl}
-        alt="News Cover"
-        className="w-full h-[400px] object-cover"
-      />
+      <div className="w-full justify-center flex">
+        <img
+          src={imageUrl}
+          alt="News Cover"
+          className="w-full h-max-[400px] object-cover neu neu-active"
+        />
+      </div>
 
       <div className="flex flex-col justify-end py-4 gap-2">
         <p className="uppercase text-xs font-semibold">
           {category} | {publishedDate}
         </p>
         <h1 className="text-2xl font-bold mb-2">{title}</h1>
-        <p className="text-base">
-          {description} {description} {description} {description} {description}
-        </p>
+        <p className="text-base">{description}</p>
         <p className="mt-5">{byline}</p>
-
-        <p className="font-semibold">
-          Source:{" "}
-          <a className="text-blue-500" href={url} target="_blank" rel="noreferrer" >
-            {source}
-          </a>{" "}
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="font-semibold">
+            Source:{" "}
+            <a
+              className="text-blue-500"
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {source}
+            </a>{" "}
+          </p>
+          {/* Icon Bookmark */}
+          <button onClick={handleBookmarkClick} className="mr-2">
+            {bookmarkIcon}
+          </button>
+        </div>
       </div>
     </>
   );

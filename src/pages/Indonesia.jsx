@@ -15,7 +15,7 @@ export default function Indonesia() {
   }, [dispatch]);
 
   return (
-    <div className="min-h-screen">
+    <>
       <div className="container mx-auto pb-16">
         <div className="max-w-4xl mx-auto p-5 rounded-lg">
           <h1 className="text-3xl font-bold text-center">Indonesia News</h1>
@@ -52,6 +52,6 @@ export default function Indonesia() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

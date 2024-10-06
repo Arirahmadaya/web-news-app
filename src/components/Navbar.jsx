@@ -69,8 +69,8 @@ export default function Nav({ fetchNews }) {
                   to={item.path}
                   className={({ isActive }) =>
                     isActive
-                      ? "text-blue-900 font-semibold flex items-center border-b-3 border-blue-900 h-16"
-                      : "text-gray-700 flex items-center hover:text-blue-500"
+                      ? " font-bold flex items-center border-b-3 border-[#17b384] h-16"
+                      : "text-gray-700 flex items-center "
                   }
                 >
                   {item.name}
@@ -114,7 +114,7 @@ export default function Nav({ fetchNews }) {
                     to={item.path}
                     className={({ isActive }) =>
                       isActive
-                        ? "text-blue-900 font-semibold flex items-center border-b-3 border-blue-900 h-full"
+                        ? " font-bold flex items-center border-b-3 border-[#17b384] h-full"
                         : "text-gray-700"
                     }
                   >
@@ -140,7 +140,7 @@ export default function Nav({ fetchNews }) {
                   <NavLink
                     className={({ isActive }) =>
                       isActive
-                        ? "bg-gray-100 text-blue-900 font-bold flex items-center border-l-3 border-blue-900"
+                        ? "bg-gray-100 font-bold flex items-center border-l-3 border-[#17CF97]"
                         : "text-gray-700 hover:bg-gray-50"
                     }
                     to={item.path}

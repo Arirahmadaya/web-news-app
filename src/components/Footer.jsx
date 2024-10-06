@@ -31,8 +31,7 @@ export default function Footer() {
 
   return (
     <>
-    <hr className="border-black"/>
-    <footer className="bg-zinc-100  py-4 relative">
+    <footer className="bg-zinc-100 py-4 relative neu mb-2 mx-2">
       
       <div className="text-center text-black">
         <p>&copy; Ari Rahmadaya. All rights reserved.</p>
@@ -41,7 +40,7 @@ export default function Footer() {
       {/* Tombol Arrow Up */}
       {showScrollButton && (
         <div
-          className={`fixed bottom-10 right-10 bg-[#17CF97] border border-spacing-2 border-blue-500 shadow-sm text-white sm:p-2 p-3 rounded-full cursor-pointer hover:bg-emerald-600 transition-all ${isBouncing ? 'bounce' : ''}`}
+          className={`fixed bottom-10 right-10 hover:border-shadow neu-active  bg-[#17CF97]  text-white sm:p-2 p-3 rounded-full cursor-pointer hover:bg-emerald-600 transition-all ${isBouncing ? 'bounce' : ''}`}
           onClick={scrollToTop}
           aria-label="Scroll to top"
         >

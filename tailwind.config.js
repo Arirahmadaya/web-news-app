@@ -12,6 +12,10 @@ export default {
       fontFamily: {
         fira: ['"Fira Sans"', "sans-serif"],
       },
+      boxShadow: {
+        DEFAULT: "3px 3px 0px 0px #000",
+        active: "1px 1px 0px 0px #000",
+      },
     },
     fontFamily: {
       nunito: ['"Nunito"', "sans-serif"],

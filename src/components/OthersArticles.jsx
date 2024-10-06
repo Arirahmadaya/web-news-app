@@ -1,4 +1,4 @@
-// src/components/OthersArticles.js
+// src/components/OthersArticles.jsx
 import React from 'react';
 
 const OthersArticles = ({ articles }) => {
