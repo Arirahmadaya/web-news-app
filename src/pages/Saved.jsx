@@ -41,16 +41,17 @@ export default function Saved() {
                       : "default-placeholder.png"
                   }
                   alt={news.headline?.main || "News Image"}
-                  className="w-44 h-48 object-cover"
+                  className="lg:w-44 lg:h-48 w-32 h-full object-cover"
                 />
 
-                <div className="p-5 flex-1">
-                  <h2 className="text-xl font-bold mb-2">
-                    {news.headline?.main || news.abstract}
+                <div className="lg:p-4 p-2 flex-1 h-full flex flex-col justify-center ">
+                  <h2 className="lg:text-xl font-bold mb-2">
+                    {news.headline?.main || news.title}
                   </h2>
-                  <p className="text-gray-700 mb-4">
+                  <p className="text-gray-700 text-sm lg:text-base mb-4 hidden sm:block">
                     {news.abstract || "No description available."}
                   </p>
+
                   <a
                     href={news.web_url || news.url}
                     className="text-blue-500 hover:underline"

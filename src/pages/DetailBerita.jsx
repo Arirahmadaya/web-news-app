@@ -1,17 +1,15 @@
 // src/pages/DetailBerita.jsx
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react"; // Tambahkan useState
 import { useSelector, useDispatch } from "react-redux";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { fetchNewsById } from "../features/news/newsSlice"; // Pastikan impor fetchNewsById
-import Others from "../components/OthersArticles";
+import { fetchNewsById } from "../features/news/newsSlice";
 import Share from "../components/Share";
 import { BookmarkIcon } from "@heroicons/react/24/outline";
 
 export default function DetailBerita() {
   const { id } = useParams();
-  const decodedId = decodeURIComponent(id); // Decode ID
-
+  const decodedId = decodeURIComponent(id);
   const dispatch = useDispatch();
   const {
     selectedArticle: article,
@@ -19,10 +17,28 @@ export default function DetailBerita() {
     error,
   } = useSelector((state) => state.news);
 
+  // State untuk menyimpan lebar jendela
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   // Ambil berita berdasarkan ID ketika komponen dimuat
   useEffect(() => {
     dispatch(fetchNewsById(decodedId));
   }, [dispatch, decodedId]);
+
+  // Event listener untuk resize jendela
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      console.log("Window width updated: ", window.innerWidth); // Debugging
+    };
+
+    window.addEventListener("resize", handleResize);
+    
+    // Bersihkan listener saat komponen di-unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -36,22 +52,41 @@ export default function DetailBerita() {
     return <div>Article not found</div>;
   }
 
+  const truncateHeadline = (headline, wordLimit) => {
+    const words = headline.split(" ");
+    const truncated = words.length > wordLimit && windowWidth < 648
+      ? words.slice(0, wordLimit).join(" ") + "..."
+      : headline;
+
+    console.log("Truncating headline:", { original: headline, truncated }); // Debugging
+    return truncated;
+  };
+
+  // Buat URL untuk detail artikel
+  const articleUrl = `https://web-news-app.vercel.app/news/${decodedId}`; // Ganti dengan URL dasar aplikasi Anda
+
   return (
     <>
-      <div className=" p-4 flex gap-5">
+      <div className="lg:p-4 p-2 flex gap-5 my-3">
         <div className="w-4/5">
           {/* Breadcrumbs */}
-          <Breadcrumbs className="my-5">
-            <BreadcrumbItem href="/">Beranda</BreadcrumbItem>
-            <BreadcrumbItem href="/">Berita</BreadcrumbItem>
-            <BreadcrumbItem>{article.headline.main}</BreadcrumbItem>
+          <Breadcrumbs className="mb-4">
+            <BreadcrumbItem href="/" className="whitespace-normal break-words">
+              Beranda
+            </BreadcrumbItem>
+            <BreadcrumbItem href="/" className="whitespace-normal break-words">
+              Berita
+            </BreadcrumbItem>
+            <BreadcrumbItem className="whitespace-normal break-words">
+              {truncateHeadline(article.headline.main, 5)}
+            </BreadcrumbItem>
           </Breadcrumbs>
 
           {/* Article Title */}
-          <h1 className="text-3xl font-bold font-nunito mb-4">
+          <h1 className="lg:text-3xl text-lg font-bold font-nunito mb-4">
             {article.headline.main}
           </h1>
-          <p className="text-gray-800 font-fira  mb-4">{article.snippet}</p>
+          <p className="text-gray-800 font-fira mb-4">{article.snippet}</p>
           {/* Article Image */}
           <img
             src={
@@ -66,19 +101,8 @@ export default function DetailBerita() {
             {article.byline.original} from {article.source}
           </p>
 
-          <p className="text-gray-800 font-fira  mb-4">
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
-            {article.lead_paragraph}
+          <p className="text-gray-800 font-fira mb-4">
+            {article.lead_paragraph.repeat(6)}
           </p>
           <p className="font-nunito font-semibold text-lg">
             {new Date(article.pub_date).toLocaleDateString("id-ID")}
@@ -101,12 +125,9 @@ export default function DetailBerita() {
               <BookmarkIcon />
             </button>
           </div>
-          <div>
-            {/* <h1 className="text-3xl font-bold text-center mb-10">Other Articles</h1> */}
-          </div>
         </div>
         <div className="w-auto my-10 fixed lg:right-28 right-5">
-          <Share />
+          <Share url={articleUrl} /> {/* Kirim URL ke komponen Share */}
         </div>
       </div>
     </>

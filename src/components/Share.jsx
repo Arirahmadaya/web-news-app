@@ -1,11 +1,13 @@
+//components/Share.jsx
 import React from "react";
 
 const Share = ({ url }) => {
+  console.log('URL to share:', url);
   const shareUrl = encodeURIComponent(url);
 
   return (
     <div className="flex-row items-center justify-center space-y-10">
-      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
+      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] neu-active  flex items-center justify-center">
         <a
           href={`http://www.facebook.com/sharer.php?u=${shareUrl}`}
           rel="noopener noreferrer"
@@ -28,7 +30,7 @@ const Share = ({ url }) => {
           </svg>
         </a>
       </div>
-      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
+      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] neu-active flex items-center justify-center">
         <a
           href={`http://twitter.com/share?text=${shareUrl}`}
           rel="noopener noreferrer"
@@ -51,7 +53,7 @@ const Share = ({ url }) => {
           </svg>
         </a>
       </div>
-      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
+      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] neu-active flex items-center justify-center">
         <a
           href={`whatsapp://send/?text=${shareUrl}`}
           rel="noopener noreferrer"
@@ -75,7 +77,7 @@ const Share = ({ url }) => {
         </a>
       </div>
 
-      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
+      <div className="h-14 w-14 border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] neu-active flex items-center justify-center">
         <a
           href={`mailto:?Subject=Check this out&Body=Check out this link: ${shareUrl}`}
           rel="noopener noreferrer"

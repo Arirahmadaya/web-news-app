@@ -26,7 +26,7 @@ export default function NewsCover({
         <p className="uppercase text-xs font-semibold">
           {category} | {publishedDate}
         </p>
-        <h1 className="text-2xl font-bold mb-2">{title}</h1>
+        <h1 className="lg:text-2xl text-lg font-bold mb-2">{title}</h1>
         <p className="text-base">{description}</p>
         <p className="mt-5">{byline}</p>
         <div className="flex justify-between items-center">

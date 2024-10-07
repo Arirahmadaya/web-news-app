@@ -7,7 +7,7 @@ export default function MainLayout() {
   return (
     <div className="min-h-screen" >
       <Navbar />
-      <div className="container md:mx-20 mx-4">
+      <div className="lg:mx-20">
 
       <Outlet />
       </div>

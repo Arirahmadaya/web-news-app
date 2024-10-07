@@ -33,13 +33,13 @@ const SideNews = ({ articles }) => {
               target="_blank" // Open in a new tab
               rel="noopener noreferrer" // Security for external links
             >
-              <div className="text-[11px] flex items-center tracking-[0.5px] min-w-[173px]">
+              <div className="text-[11px] flex items-center lg:tracking-[0.5px] min-w-[173px]">
                 <div className="font-semibold uppercase">{section} |</div>
                 <div className="font-gmtThin pl-1">
                   {new Date(published_date).toLocaleDateString()}
                 </div>
               </div>
-              <div className="font-bold text-base mt-[21px] line-clamp-3 tracking-[0.7px]">
+              <div className="font-bold lg:text-base text-sm mt-[21px] line-clamp-3 tracking-[0.7px]">
                 {title}
               </div>
               <div className="font-semibold text-xs capitalize mt-[20px] mb-3 line-clamp-1">

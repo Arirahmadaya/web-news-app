@@ -28,9 +28,9 @@ const TrendingNews = () => {
   };
 
   return (
-    <div className="my-5 mx-16">
+    <div className="my-5 mx-4">
       <h1 className="text-3xl font-bold text-center">Trending News</h1>
-      <div className="mt-5 flex  gap-14">
+      <div className="mt-5 flex lg:gap-14 gap-4">
         <div className="w-2/3">
           {/* Menampilkan berita utama */}
           {trendingArticles.length > 0 && (
