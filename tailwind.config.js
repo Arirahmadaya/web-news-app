@@ -20,6 +20,7 @@ export default {
     fontFamily: {
       nunito: ['"Nunito"', "sans-serif"],
     },
+   
   },
   darkMode: "class",
   plugins: [nextui()],

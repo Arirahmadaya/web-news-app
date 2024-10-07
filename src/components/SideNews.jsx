@@ -33,7 +33,7 @@ const SideNews = ({ articles }) => {
               target="_blank" // Open in a new tab
               rel="noopener noreferrer" // Security for external links
             >
-              <div className="text-[11px] flex items-center lg:tracking-[0.5px] min-w-[173px]">
+              <div className="text-[10px] lg:text[11px] flex items-center lg:tracking-[0.5px] min-w-[173px]">
                 <div className="font-semibold uppercase">{section} |</div>
                 <div className="font-gmtThin pl-1">
                   {new Date(published_date).toLocaleDateString()}

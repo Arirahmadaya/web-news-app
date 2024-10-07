@@ -20,7 +20,7 @@ export default function Saved() {
 
   return (
     <>
-      <div className="mx-auto py-6">
+      <div className="py-6 lg:px-16">
         <h1 className="text-3xl font-bold text-center mb-10">Saved News</h1>
         {savedNews.length > 0 ? (
           <div className="space-y-6">

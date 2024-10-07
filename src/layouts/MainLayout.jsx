@@ -5,11 +5,10 @@ import Footer from "../components/Footer";
 
 export default function MainLayout() {
   return (
-    <div className="min-h-screen" >
+    <div className="min-h-screen">
       <Navbar />
-      <div className="lg:mx-20">
-
-      <Outlet />
+      <div className="px-3">
+        <Outlet />
       </div>
       <Footer />
     </div>

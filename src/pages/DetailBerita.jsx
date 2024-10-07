@@ -67,7 +67,7 @@ export default function DetailBerita() {
 
   return (
     <>
-      <div className="lg:p-4 p-2 flex gap-5 my-3">
+      <div className="lg:p-16 flex gap-5 my-3">
         <div className="w-4/5">
           {/* Breadcrumbs */}
           <Breadcrumbs className="mb-4">
