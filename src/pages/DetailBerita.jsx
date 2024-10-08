@@ -67,7 +67,7 @@ export default function DetailBerita() {
 
   return (
     <>
-      <div className="lg:p-16 flex gap-5 my-3">
+      <div className="px-3 flex gap-5 my-3">
         <div className="w-4/5">
           {/* Breadcrumbs */}
           <Breadcrumbs className="mb-4">
@@ -95,7 +95,7 @@ export default function DetailBerita() {
                 : "https://via.placeholder.com/400"
             }
             alt={article.headline.main}
-            className="w-full max-h-[600px] rounded-lg mb-4 shadow-md"
+            className="w-full max-h-[600px] rounded-lg mb-4 shadow-md neu-img neu-active"
           />
           <p className="font-nunito my-4">
             {article.byline.original} from {article.source}

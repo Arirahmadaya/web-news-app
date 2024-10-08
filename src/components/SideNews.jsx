@@ -60,7 +60,7 @@ const SideNews = ({ articles }) => {
       <div className="w-full text-center mt-5">
         <Link
           to="#" // Valid internal route
-          className="inline-block border-shadow neu-active px-4 py-2 bg-[#17CF97] text-black hover:bg-emerald-600"
+          className="inline-block neu-none neu-active px-4 py-2 bg-[#17CF97] text-black hover:bg-emerald-600"
         >
           Other
         </Link>

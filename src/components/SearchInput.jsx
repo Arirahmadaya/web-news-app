@@ -31,7 +31,7 @@ export default function SearchInput() {
           mainWrapper: "h-full",
           input: "text-small",
           inputWrapper:
-            "h-full font-bold text-blue-800 bg-white-400/20 border rounded-xl",
+            "h-full font-bold text-blue-800 bg-white-400/20 neu-img border rounded-xl",
         }}
         placeholder="Search News..."
         size="sm"

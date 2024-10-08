@@ -20,7 +20,7 @@ export default function Saved() {
 
   return (
     <>
-      <div className="py-6 lg:px-16">
+      <div className="py-6 px-3">
         <h1 className="text-3xl font-bold text-center mb-10">Saved News</h1>
         {savedNews.length > 0 ? (
           <div className="space-y-6">
@@ -54,7 +54,7 @@ export default function Saved() {
 
                   <a
                     href={news.web_url || news.url}
-                    className="text-blue-500 hover:underline"
+                    className="text-blue-500 hover:underline w-[90px]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

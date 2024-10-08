@@ -40,7 +40,7 @@ export default function Footer() {
       {/* Tombol Arrow Up */}
       {showScrollButton && (
         <div
-          className={`fixed bottom-10 lg:right-10 right-5 hover:border-shadow neu-active  bg-[#17CF97]  text-white sm:p-2 p-3 rounded-full cursor-pointer hover:bg-emerald-600 transition-all ${isBouncing ? 'bounce' : ''}`}
+          className={`fixed bottom-10 lg:right-10 right-5 hover:neu-none neu-active  bg-[#17CF97]  text-white sm:p-2 p-3 rounded-full cursor-pointer hover:bg-emerald-600 transition-all ${isBouncing ? 'bounce' : ''}`}
           onClick={scrollToTop}
           aria-label="Scroll to top"
         >

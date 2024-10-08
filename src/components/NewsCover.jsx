@@ -18,7 +18,7 @@ export default function NewsCover({
         <img
           src={imageUrl}
           alt="News Cover"
-          className="w-full h-max-[400px] object-cover neu neu-active"
+          className="w-full h-max-[400px] object-cover neu-img neu-active"
         />
       </div>
 

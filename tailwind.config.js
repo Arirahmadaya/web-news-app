@@ -15,6 +15,7 @@ export default {
       boxShadow: {
         DEFAULT: "3px 3px 0px 0px #000",
         active: "1px 1px 0px 0px #000",
+        cover: "5px 5px 0px 0px #000",
       },
     },
     fontFamily: {
