@@ -1,6 +1,6 @@
 # Web News App
 
-Web News App is a news aggregator application built with React.js, Tailwind CSS, Redux, and React Router as part of my final individual project for the FGA x Hacktiv8 program.
+The Web News App is a news application built with React.js, Tailwind CSS, Redux, and React Router, utilizing the New York Times (NYTimes) APIs to fetch and display the latest news. Developed as part of my final individual project for the FGA x Hacktiv8 program.
 
 ## Features
 
